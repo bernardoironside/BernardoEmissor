@@ -3,18 +3,15 @@ pipeline {
     stages {
         stage('Verificar Repositório') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']],
-                                          userRemoteConfigs: [[url: 'https://github.com/bernardoironside/BernardoEmissor.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/bernardoironside/BernardoEmissor.git']]])
             }
         }
 
         stage('Instalar Dependências') {
             steps {
                 script {
-                    // Atualiza o PATH se necessário
                     env.PATH = "/usr/bin:$PATH"
-                    // Instalar as dependências Maven antes de compilar o projeto
-                    bat 'mvn clean install'  // Instala as dependências do Maven
+                    bat 'mvn clean install'
                 }
             }
         }
