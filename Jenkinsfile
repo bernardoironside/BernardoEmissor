@@ -10,12 +10,13 @@ pipeline {
         stage('Instalar Dependências') {
             steps {
                 script {
+                    // Atualiza o PATH se necessário
                     env.PATH = "/usr/bin:$PATH"
-                    bat 'mvn clean install'
+                    // Instalar as dependências Maven antes de compilar o projeto
+                    bat 'mvn clean install'  // Instala as dependências do Maven
                 }
             }
         }
-
 
         stage('Construir Imagem Docker') {
             steps {
