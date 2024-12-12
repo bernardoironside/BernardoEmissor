@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('Verificar Repositório') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/bernardoironside/BernardoEmissor.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']],
+                                          userRemoteConfigs: [[url: 'https://github.com/GuilhermeLBonomo/Emissor.git']]])
             }
         }
 
@@ -17,6 +18,7 @@ pipeline {
                 }
             }
         }
+
 
         stage('Construir Imagem Docker') {
             steps {
